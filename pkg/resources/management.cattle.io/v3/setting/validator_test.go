@@ -424,6 +424,11 @@ func (s *SettingSuite) TestValidateClusterAgentSchedulingPriorityClass() {
 }
 `,
 		},
+		{
+			name:     "base case - no customization",
+			allowed:  true,
+			newValue: ``,
+		},
 	}
 
 	for _, test := range tests {

@@ -401,6 +401,9 @@ func (a *admitter) validateAgentTLSMode(oldSetting, newSetting *v3.Setting) erro
 
 func (a *admitter) validateClusterAgentPriorityClass(newSetting *v3.Setting) error {
 	pc := provv1.PriorityClassSpec{}
+	if newSetting.Value == "" {
+		return nil
+	}
 
 	err := json.Unmarshal([]byte(newSetting.Value), &pc)
 	if err != nil {
@@ -424,6 +427,9 @@ func (a *admitter) validateClusterAgentPriorityClass(newSetting *v3.Setting) err
 
 func (a *admitter) validateClusterAgentPodDisruptionBudget(newSetting *v3.Setting) error {
 	pdb := provv1.PodDisruptionBudgetSpec{}
+	if newSetting.Value != "" {
+		return nil
+	}
 
 	err := json.Unmarshal([]byte(newSetting.Value), &pdb)
 	if err != nil {
